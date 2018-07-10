@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="jumbotron">
+  <h1 class="display-4">Bem vindos a Rede de Crypto Notícias!</h1>
+  <p class="lead">Sua Fonte Para Notícias do Último Minuto de Cripto Moedas e Blockchain!</p>
+</div>
+<br/>
+
+
+<div class="table-responsive">
+	<table class="table table-bordered table-dark table-hover">
+	<thead>
+	    <tr>
+	      <th scope="col">Name</th>
+	      <th scope="col">Price_USA</th>
+	      <th scope="col">Price_EUR</th>
+	      <th scope="col">Preços_BRL</th>
+	      <th scope="col">24h_High_US</th>
+	      <th scope="col">24h_High_EUR</th>
+	      <th scope="col">24h_Auto_BRL</th>
+	      <th scope="col">24h_Low_US</th>
+	      <th scope="col">24h_Low_EUR</th>
+	      <th scope="col">24h_Baixo_BRL</th>
+	      <th scope="col">Market_Cap_US</th>
+	      <th scope="col">Market_Cap_EUR</th>
+	      <th scope="col">Market_Cap_BRL</th>
+	    </tr>
+	</thead>
+	<tbody>
+{% for key,value in price.DISPLAY.items %}
+
+	    <tr>
+	      <th>{{ key }}</th>
+	      <td>{{ value.USD.PRICE }} <td> {{ value.EUR.PRICE }} <td> {{ value.BRL.PRICE }}</td>
+	      <td>{{ value.USD.HIGHDAY }} <td> {{ value.EUR.HIGHDAY }} <td> {{ value.BRL.HIGHDAY }}</td>
+	      <td>{{ value.USD.LOWDAY }} <td> {{ value.EUR.LOWDAY }} <td> {{ value.BRL.LOWDAY }}</td>
+	      <td>{{ value.USD.MKTCAP }} <td> {{ value.EUR.MKTCAP }} <td> {{ value.BRL.MKTCAP }}</td>
+	    </tr>
+	{% endfor %}
+
+
+	  </tbody>
+	</table>
+</div>
+
+<br/><br/>
+
+<div class="container">
+	<div class="row">
+		{% for x in api.Data %}
+			<div class="col-sm">
+				<div class="card" style="width: 18rem;">
+	  				<img class="card-img-top" src="{{ x.imageurl }}" alt="{{ x.source}}">
+	  				<div class="card-body">
+	    				<h5 class="card-title">{{ x.title }}</h5>
+	    				<p class="card-text">{{ x.body }}</p>
+	    				<a href="{{ x.url }}" class="btn btn-secondary">Veja mais...</a>
+	  				</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>	
+</div>
+
+
+
+{% endblock %}
